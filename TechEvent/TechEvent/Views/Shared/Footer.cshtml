@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<footer class="border-top footer text-muted container ">
+    <div class="row end verticalcenter">
+        <div class="col-sm-4" style="display: flex; justify-content: space-around;">
+            <a href="mailto:info@dotnetdays.ro">Contact us</a>
+            <a asp-area="" asp-controller="Home" asp-action="CodeOfConduct" asp-route-year="@ViewBag.Year">Code of Conduct</a>
+            <a asp-area="" asp-controller="Home" asp-action="TermsConditions" asp-route-year="@ViewBag.Year">Terms & Conditions</a>
+        </div>
+    
+        <div class="col-sm-4 text-center">
+            <a href="http://facebook.com/dotnetdays.ro" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com/dotnetdaysro" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://meetup.com/NET-User-Group-Iasi/" target="_blank">
+                <i class="fab fa-slack"></i>
+            </a>
+        </div>
+        <div class="col-sm-2 text-lg-right">
+            &copy; 2019 - TechEvent -
+        </div>
+        <div class="col-sm-2 text-lg-right">
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" asp-route-year="@ViewBag.Year">Privacy</a>
+        </div>
+    </div>
+</footer>

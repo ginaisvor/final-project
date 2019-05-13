@@ -1,0 +1,27 @@
+﻿@model TechEvent.Domain.Entities.Talk
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="col-md-10 offset-1 col-sm-12 text-center">
+
+    <hr />
+    <dl class="row">
+        <dd class="dialog_title col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dd class="col-sm-10">
+            <span class="alert-primary">
+                @Html.DisplayFor(model => model.Speaker.FullName)
+            </span>
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-controller="Talks" asp-action="Index">Back to List</a>
+</div>

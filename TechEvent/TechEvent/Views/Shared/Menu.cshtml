@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<header class="meniu">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" asp-route-year="@ViewBag.Year">TechEvent</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    @*<li class="nav-item">
+                            <button class="btn btn-link">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </button>
+
+                        </li>*@
+
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-link  dropdown-toggle text-dark" data-toggle="dropdown">
+                            Details about
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Speakers" asp-action="Index" asp-route-year="@ViewBag.Year">Speakers</a>
+                            <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Talks" asp-action="Index" asp-route-year="@ViewBag.Year">Talks</a>
+                            <a a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Sponsors" asp-action="Index" asp-route-year="@ViewBag.Year">Sponsors</a>
+                            <a a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Schedules" asp-action="Index" asp-route-year="@ViewBag.Year">Agenda</a>
+                            <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Venue" asp-route-year="@ViewBag.Year" asp-fragment="venue">Venue</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index" asp-route-year="@ViewBag.Year" asp-fragment="about">About</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="" asp-route-year="@ViewBag.Year">Contact</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CodeOfConduct" asp-route-year="@ViewBag.Year">Code of conduct</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="TermsConditions" asp-route-year="@ViewBag.Year">Terms and conditions</a>
+                        </div>
+                    </div>
+
+                    <li class="nav-item">
+                        <button class="btn btn-link">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CallForPapers" asp-route-year="@ViewBag.Year">Call for papers</a>
+                        </button>
+                    </li>
+
+
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+                    {
+
+                        <li class="nav-item" style="margin-right:auto">
+                            <button class="btn btn-link ">
+                                <a class="nav-link text-dark" asp-area="admin" asp-controller="Sponsors" asp-action="Index" asp-route-year="@ViewBag.Year">Go to admin side</a>
+                            </button>
+
+                        </li>
+                    }
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Speaker"))
+                    {
+                        <li class="nav-item">
+                            <button class="btn btn-link">
+                                <a class="nav-link text-dark" asp-area="admin" asp-controller="Speakers" asp-action="Index" asp-route-year="@ViewBag.Year">Edit your info</a>
+                            </button>
+
+                        </li>
+                    }
+
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-link  dropdown-toggle text-dark" data-toggle="dropdown">
+                            Edition
+                        </button>
+
+                        <all-editions class="dropdown-menu"></all-editions>
+
+                    </div>
+
+                    <partial name="~/Views/Shared/_LoginPartial.cshtml" />
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

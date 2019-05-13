@@ -1,0 +1,117 @@
+﻿@using TechEvent.Domain.UsefulClases;
+@model IEnumerable<TechEvent.Domain.Entities.Paper>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List of papers</h1>
+
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-warning">
+        <p>@TempData["ErrorMessage"]</p>
+    </div>
+}
+@if (TempData["SuccesMessage"] != null)
+{
+    <div class="alert alert-success">
+        <p>@TempData["SuccesMessage"]</p>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th colspan="4" class="text-center" style="border-right:1px solid ">Speaker</th>
+            <th colspan="3" class="text-center">Talk</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Company")
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+
+            <th>
+                @Html.DisplayName("LinkedIn")
+            </th>
+
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+
+            <th>
+                @Html.DisplayName("Edition")
+            </th>
+            <th>
+                @Html.DisplayName("Type")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+            string clasa = "paper" + item.PaperStatus.Name;
+
+            <tr class=@clasa>
+
+                <td>
+                    @if (item.PaperStatus.Id <= (int)PaperStatusEnum.UnderReview)
+                    {
+                        <a asp-area="Admin" asp-controller="Papers" asp-action="ChangeStatus" asp-route-id="@item.Id" title="change status">
+                            <i class="fas fa-angle-double-up"></i>
+                        </a>
+                    }
+                </td>
+                <td>
+                    <p title="@item.PaperStatus.Description">@item.PaperStatus.Name</p>
+                </td>
+                <td>
+                    @(item.FirstName + " " + item.LastName)
+                </td>
+                <td>
+                    <a href="@item.CompanyWebsite" target="_blank">@item.CompanyName</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    <a href="@item.LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PresentationTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edition.Tagline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TalkType.Name)
+                </td>
+                <td>
+                    @if (item.PaperStatus.Id <= (int)PaperStatusEnum.UnderReview)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

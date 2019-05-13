@@ -1,0 +1,50 @@
+﻿@model IEnumerable<IGrouping<TechEvent.Domain.Entities.TalkType, TechEvent.Domain.Entities.Talk>>
+@{
+    ViewData["Title"] = "Talks";
+}
+
+<h1>Talks</h1>
+
+
+<div class="container text-center">
+    <h1>About Tech Event</h1>
+    <br />
+    <ul class="nav nav-tabs nav-justified " role="tablist">
+        @{ var first = true;}
+        @foreach (var talkTalkGroup in Model)
+        {
+            <li class="nav-item verticalcenter">
+                @{ var tabId = "#menu" + talkTalkGroup.Key.Id;
+                    string clasa = (first ? "nav-link active" : "nav-link");
+                    first = false;
+                }
+                <a class="@clasa" data-toggle="tab" href=@tabId><i class="fas fa-book" style="margin:0"></i><span>@talkTalkGroup.Key.Name</span></a>
+            </li>
+
+        }
+    </ul>
+
+    <div class="tab-content container-fluid">
+        @{ first = true;}
+        @foreach (var talkTalkGroup in Model)
+        {
+            var tabId = "menu" + talkTalkGroup.Key.Id;
+            string clasa = (first ? "container tab-pane active" : "container tab-pane fade");
+            first = false;
+
+            <div id=@tabId class="@clasa">
+                <p>Duration: @talkTalkGroup.Key.Duration min</p>
+                @foreach (var item in talkTalkGroup)
+                {
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12"><p>@item.Name by: <a asp-controller="Speakers" asp-action="Details2" asp-route-pageslug="@item.Speaker.PageSlug"> @item.Speaker.FullName </a></p></div>
+                        <div class="col-md-8 col-sm-12 text-left"><p>@item.Description</p></div>
+                    </div>
+                }
+            </div>
+
+
+        }
+
+    </div>
+</div>

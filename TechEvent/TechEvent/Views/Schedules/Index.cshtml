@@ -1,0 +1,58 @@
+﻿@using TechEvent.Domain.UsefulClases
+@model IEnumerable<IGrouping<Room, ScheduleElement>>
+
+<div class="tab-content container-fluid justify-content-center" style="max-width:1000px">
+    <h3 id="home">Schedule, edition @ViewBag.Year, April 06</h3>
+</div>
+
+    <div id="agenda" class="tab-content container-fluid" style="max-width:1000px">
+        <div class="container tab-pane active">
+            @foreach (var room in Model)
+            {
+                <h4>@room.Key.Topic</h4>
+                <h5>@room.Key.Location, @room.Key.Seats seats</h5>
+                <br />
+
+                <p>
+                    <div id="agenda1" class="card-header">
+
+                        <div class="container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayName("Starts at")</th>
+                                        <th>@Html.DisplayName("Ends at")</th>
+                                        <th> @Html.DisplayName("Talk")</th>
+                                        <th>@Html.DisplayName("Speaker")</th>
+                                        <th>@Html.DisplayName("Break after")</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in room)
+                                    {
+                                        Time start = new Time(item.StartHour);
+                                        Time end = new Time(item.EndHour.GetValueOrDefault());
+                                        <tr>
+                                            <td>@start.ToString()</td>
+                                            <td>@end.ToString()</td>
+                                            <td>
+                                                <a href="Talks/Details/@item.TalkId">@item.TalkName</a>
+                                            </td>
+                                            <td>
+                                                <a href="Speakers/Details/@item.SpeakerId">@item.SpeakerName</a>
+                                            </td>
+
+                                            <td>@item.BreakAfter</td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <i class="far fa-hand-point-up"><a href="#home">Home</a></i>
+                </p>
+            }
+        </div>
+    </div>

@@ -1,0 +1,70 @@
+﻿@model TechEvent.Domain.Entities.Speaker
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Welcome @Model.FirstName @Model.LastName</h1>
+<h4>On this page you can see or edit your informations.</h4>
+<br />
+
+<div>
+    <span class="alert-info"><a asp-controller="Edit" asp-action="Info" asp-route-year=@ViewBag.Year>Edit your informations</a></span>
+</div>
+<div class="row">
+    <div class="col-md-10 offset-1 col-sm-12 text-center">
+        <div class="container">
+            <a href="@Model.Website">
+                <img class="img-fluid img-thumbnail" style="max-height:300px" src="@Url.Action("GetImage","Speakers",new { Id = Model.Id })" alt="No picture to show" />
+            </a>
+        </div>
+        <p>@Model.Position</p>
+        <div>
+            <a href="@Model.CompanyWebsite" target="_blank">@Model.CompanyName</a>
+        </div>
+        <div>
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        <hr />
+        <div>
+            <a href="@Model.LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            @if (Model.Facebook != null)
+            {
+                <a href="@Model.Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            }
+            <a href="mailto:@Model.Email"><i class="far fa-envelope"></i></a>
+            @if (Model.Skype != null)
+            {
+                <a href="@Model.Skype" target="_blank"><i class="fab fa-skype"></i></a>
+            }
+            <a href="@Model.GitHub" target="_blank"><i class="fab fa-github-square"></i></a>
+            @if (Model.Twitter != null)
+            {
+                <a href="@Model.Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+            }
+        </div>
+    </div>
+</div>
+
+@if (Model.Talks.Count > 0)
+{
+    <div class="alert-info">
+        <p>Below is a list with your talks from this edition.</p>
+        <p>Hint: Click on the name of the talk to be able to edit it</p>
+    </div>
+}
+
+<div>
+    <dl class="row">
+        @foreach (var talk in Model.Talks)
+        {
+            <dt class="col-sm-2 offset-1">
+                <a asp-controller="Edit" asp-action="Talk" asp-route-id="@talk.Id" title="Edit" asp-route-year=@ViewBag.Year>@talk.Name</a>
+            </dt>
+            <dd class="col-sm-8">
+                <p>@talk.TalkType.Name - @talk.TalkType.Duration min</p>
+                <p>@talk.Description</p>
+            </dd>
+        }
+    </dl>
+</div>
+

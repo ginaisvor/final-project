@@ -1,0 +1,37 @@
+﻿@using TechEvent.Domain.UsefulClases
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="vc_col-sm-12 wpb_column column_container">
+    <div class="wpb_wrapper">
+        <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center text-center">
+            <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey">
+                <i class="fas fa-users "></i>
+            </div>
+        </div>
+        <h3 style="text-align: center" class="vc_custom_heading">Keynote speakers</h3>
+        <p style="text-align: center;">
+            <span style="color: #8d93a0;">
+                Meet our most valued speakers
+            </span>
+        </p>
+    </div>
+</div>
+<div class="vc_empty_space" style="height: 32px">
+    <span class="vc_empty_space_inner"></span>
+</div>
+<div class="centerclass row text-center">
+    @foreach (Speaker speaker in ViewBag.Speakers)
+    {
+        <div class="speakerArea col-lg-3 col-md-6 col-12">
+            <img src="@Url.Action("GetImage","Speakers",new { Id = speaker.Id })" class="img-fluid rounded-circle" width="200" style="max-height:200px;" />
+            <h6 class="name">
+                <a asp-controller="Speakers" asp-action="Details2" asp-route-pageslug="@speaker.PageSlug" asp-route-year="@ViewBag.Year">@speaker.FullName</a>
+            </h6>          
+            <p>@speaker.Description.MaxChars(150)</p>
+        </div>
+    }
+</div>

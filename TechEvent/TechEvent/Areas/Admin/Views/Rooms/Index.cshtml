@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TechEvent.Domain.Entities.Room>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Rooms for edition @ViewBag.Year</h3>
+@if (ViewBag.AllowToEdit)
+{
+    <p>
+        <a asp-action="Create" asp-route-year="@TempData["Message"]">Create New</a>
+    </p>
+}
+@if (TempData["Message"] != null)
+{
+    <div class="bg-success">@TempData["Message"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="bg-warning">@TempData["ErrorMessage"]</div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seats)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Topic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seats)
+                </td>
+                @if (ViewBag.AllowToEdit)
+                {
+                    <td class="card-footer">
+                        <a asp-action="Edit" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Edit</a> |
+                        <a asp-action="Index" asp-controller="Schedules" asp-fragment="@("menu"+item.Id)" asp-route-year=@ViewBag.Year>Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td class="card-footer">
+                        <a asp-action="Index" asp-controller="Schedules" asp-fragment="@("menu"+item.Id)" asp-route-year=@ViewBag.Year>Details</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

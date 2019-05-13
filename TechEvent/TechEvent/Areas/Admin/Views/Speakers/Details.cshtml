@@ -1,0 +1,53 @@
+﻿@model TechEvent.Domain.Entities.Speaker
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Details about @Model.FullName</h4>
+    <hr />
+    <div class="col-md-10 offset-1 col-sm-12 text-center">
+        <div class="container">
+            <a href="@Model.Website">
+                <img class="img-fluid img-thumbnail" style="max-height:300px" src="@Url.Action("GetImage","Speakers",new { Id = Model.Id })" alt="No picture to show" />
+            </a>
+        </div>
+        <p>@Model.Position</p>
+        <div>
+            <a href="@Model.CompanyWebsite" target="_blank">@Model.CompanyName</a>
+        </div>
+        <div>
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        <hr />
+        <div>
+            <a href="@Model.LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            @if (Model.Facebook != null)
+            {
+                <a href="@Model.Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            }
+            <a href="mailto:@Model.Email"><i class="far fa-envelope"></i></a>
+            @if (Model.Skype != null)
+            {
+                <a href="@Model.Skype" target="_blank"><i class="fab fa-skype"></i></a>
+            }
+            <a href="@Model.GitHub" target="_blank"><i class="fab fa-github-square"></i></a>
+            @if (Model.Twitter != null)
+            {
+                <a href="@Model.Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+            }
+        </div>
+    </div>
+</div>
+@if (ViewBag.AllowToEdit)
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" asp-route-year=@ViewBag.Year>Edit</a> |
+        <a asp-action="Index" asp-route-year=@ViewBag.Year>Back to List</a>
+    </div>
+}
+else
+{
+    <a asp-action="Index" asp-route-year=@ViewBag.Year>Back to List</a>
+}

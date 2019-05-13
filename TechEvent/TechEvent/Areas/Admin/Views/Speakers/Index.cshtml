@@ -1,0 +1,56 @@
+﻿@using TechEvent.Domain.UsefulClases;
+@model IEnumerable<TechEvent.Domain.Entities.Speaker>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>List of speakers</h3>
+@if (ViewBag.AllowToEdit)
+{
+    <p>
+        <a asp-action="Create" asp-route-year=@ViewBag.Year>Create New</a>
+    </p>
+}
+
+<div class="row">
+    @foreach (var speaker in Model)
+    {
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card text-center" style="height:650px">
+                <div class="card-header">
+                    <h4>
+                        @Html.DisplayFor(model => speaker.FullName)
+                    </h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="container">
+                        <a asp-action="Details" asp-route-id="@speaker.Id">
+                            <img class="img-fluid rounded-circle" style="max-height:170px" src="@Url.Action("GetImage","Speakers",new { Id = speaker.Id })" alt="No picture to show" />
+                        </a>
+                    </div>
+
+                    <p>@speaker.Position</p>
+                    <p><a href="@speaker.LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a></p>
+                    <p>@speaker.Description.MaxChars(200)</p>
+                </div>
+                @if (ViewBag.AllowToEdit)
+                {
+                    <div class="card-footer">
+                        <a asp-action="Edit" asp-route-id="@speaker.Id" asp-route-year=@ViewBag.Year>Edit</a> |
+                        <a asp-action="Details" asp-route-id="@speaker.Id" asp-route-year=@ViewBag.Year>Details</a> |
+                        <a asp-action="Delete" asp-route-id="@speaker.Id" asp-route-year=@ViewBag.Year>Delete</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="card-footer">
+                        <a asp-action="Details" asp-route-id="@speaker.Id" asp-route-year=@ViewBag.Year>Details</a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+

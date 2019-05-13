@@ -1,0 +1,167 @@
+﻿@using TechEvent.Domain.UsefulClases;
+@model IEnumerable<IGrouping<Room, ScheduleElement>>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container">
+    <h2>Schedule - @ViewBag.Year</h2>
+    <br>
+    @if (TempData["Message"] != null)
+    {
+        <div class="bg-success">@TempData["Message"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="bg-warning">@TempData["ErrorMessage"]</div>
+    }
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        @{ int i = 1;
+            string requiredClass="";}
+        @foreach (var room in ViewBag.Rooms)
+        {
+            if(i==1)
+            {
+                requiredClass = "nav-link active";
+            } else
+            {
+                requiredClass = "nav-link";
+            }
+            i++;
+            <li class="nav-item">
+                @{ string menuId = "#menu" + room.Id;}
+                <a class="@requiredClass" data-toggle="tab" href=@menuId>@room.Topic</a>
+            </li>
+        }
+        @if (ViewBag.AllowToEdit)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Rooms" asp-action="Create" asp-route-year="@ViewBag.Year"><i class="fas fa-plus"></i></a>
+            </li>
+        }
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        @{ i = 1;
+           requiredClass = "";}
+        @foreach (var room in Model)
+        {
+            if (i == 1)
+            {
+                requiredClass = "container tab-pane active";
+            }
+            else
+            {
+                requiredClass = "container tab-pane fade";
+            }
+            i++;
+
+            string menuId = "menu" + room.Key.Id;
+            <div id=@menuId class="@requiredClass">
+                <br>
+                <h4>@room.Key.Name Location: @room.Key.Location @(room.Key.Seats.HasValue ? room.Key.Seats.Value + " seats" : "")</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Break After</th>
+                            <th>Presentation</th>
+                            <th>Speaker</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var schedule in room)
+                        {
+                            Time start = new Time(schedule.StartHour);
+                            Time end = new Time(schedule.EndHour.Value);
+                            <tr>
+                                <td>@start.ToString() - @end.ToString()</td>
+                                <td>@schedule.BreakAfter</td>
+                                <td><a asp-action="Details" asp-area="admin" asp-controller="Talks" asp-route-id="@schedule.TalkId" asp-route-year=@ViewBag.Year>@schedule.TalkName</a></td>
+                                <td><a asp-action="Details" asp-area="admin" asp-controller="Speakers" asp-route-id="@schedule.SpeakerId" asp-route-year=@ViewBag.Year>@schedule.SpeakerName</a></td>
+
+                                @if (ViewBag.AllowToEdit)
+                                {
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@schedule.Id" asp-route-year=@ViewBag.Year>Edit</a> |
+                                        <a asp-action="Details" asp-route-id="@schedule.Id" asp-route-year=@ViewBag.Year>Details</a> |
+                                        <a asp-action="Delete" asp-route-id="@schedule.Id" asp-route-year=@ViewBag.Year>Delete</a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td><a asp-action="Details" asp-route-id="@schedule.Id" asp-route-year=@ViewBag.Year>Details</a></td>
+                                }
+
+                            </tr>
+                        }
+                        <tr>
+                            @if (ViewBag.AllowToEdit)
+                            {
+                                <td colspan="4" class="text-center">
+                                    <a class="nav-link" asp-controller="Schedules" asp-action="Create" asp-route-year="@ViewBag.Year" asp-route-roomId="@room.Key.Id"><i class="fas fa-plus"></i></a>
+                                </td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+        @foreach (Room room in ViewBag.Rooms)
+        {
+            bool alreadyExist = false;
+            foreach (var item in Model)
+            {
+                if (item.Key.Id == room.Id)
+                {
+                    alreadyExist = true;
+                    break;
+                }
+            }
+            if (!alreadyExist)
+            {
+                if (i == 1)
+                {
+                    requiredClass = "container tab-pane active";
+                }
+                else
+                {
+                    requiredClass = "container tab-pane fade";
+                }
+                i++;
+
+                string menuId = "menu" + room.Id;
+                <div id=@menuId class="@requiredClass">
+                    <br>
+                    <h4>@room.Name Location: @room.Location @(room.Seats.HasValue ? room.Seats.Value + " seats" : "")</h4>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Presentation</th>
+                                <th>Speaker</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @if (ViewBag.AllowToEdit)
+                                {
+                                    <td colspan="4" class="text-center">
+                                        <a class="nav-link" asp-controller="Schedules" asp-action="Create" asp-route-year="@ViewBag.Year" asp-route-roomId="@room.Id"><i class="fas fa-plus"></i></a>
+                                    </td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+
+    </div>
+</div>

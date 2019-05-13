@@ -1,0 +1,28 @@
+﻿body {
+    font-size: 20px;
+}
+
+.paperNew {
+    font-weight: bold;
+    color:black;
+}
+
+.paperUnderReview {
+    
+}
+
+.paperRejected {
+    background-color:#f9d2c9;
+}
+
+.paperAccepted {
+    background-color:aquamarine;
+}
+
+#left {
+    margin-right: auto;
+}
+
+.btn btn-link dropdown-toggle{
+    color:black;
+}

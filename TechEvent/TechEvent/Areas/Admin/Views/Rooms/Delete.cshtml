@@ -1,0 +1,59 @@
+﻿@model TechEvent.Domain.Entities.Room
+
+@{
+    ViewData["Title"] = "Delete";
+}
+@if(Model.Schedules.Count() > 0)
+{
+    <div class="bg-warning">
+        <p>In this room are the following talks:</p>
+        <ul>
+            @foreach (var item in Model.Schedules)
+            {
+                <li>@item.Talk.Name</li>
+            }
+        </ul>
+        <p>You will need to program them again.</p>
+    </div>
+}
+<h3>Are you sure you want to delete room @Model.Name?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Topic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Topic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Seats)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Seats)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Year")
+        </dt>
+        <dd class = "col-sm-10">
+            <span>@ViewBag.Year</span>
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete" asp-route-year="@ViewBag.Year" asp-route-id="@Model.Id">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-route-year="@ViewBag.Year">Back to List</a>
+    </form>
+</div>

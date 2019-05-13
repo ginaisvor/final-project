@@ -1,0 +1,59 @@
+﻿@model IEnumerable<IGrouping<TechEvent.Domain.Entities.SponsorType, TechEvent.Domain.Entities.Sponsor>>
+
+@{
+    ViewData["Title"] = "Sponsors";
+}
+
+<h1>List of the Sponsors</h1>
+
+<div>
+    @foreach (var sponsorListByGroup in Model)
+    {
+        <div class="alert alert-info">Category: @sponsorListByGroup.Key.Name</div>
+
+        <div class="row">
+            @if (TempData["MessageEdit"] != null)
+            {
+                <div class="alert alert-warning"><p>@TempData["MessageEdit"]</p></div>
+            }
+
+            @foreach (var item in sponsorListByGroup)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    @{string clasa;
+                        if (item.Active)
+                        {
+                            clasa = "";
+                        }
+                        else
+                        {
+                            clasa = "bg-light";
+                        }
+                    }
+
+
+                    @if (item.SponsorPhoto != null)
+                    {
+                        <div class="container">
+                            <a href="@item.Website" target="_blank">
+                                <img class="img-fluid @clasa" style="max-height:168px" src="@Url.Action("GetImage", "Sponsors", new { Id = item.Id })" alt="No picture to show" />
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        @if (item.Website != null)
+                        {
+                            <p class="display-label"><a href="@item.Website">@item.Website</a></p>
+                        }
+                    }
+
+
+                </div>
+            }
+        </div>
+        <br />
+    }
+</div>
+
+

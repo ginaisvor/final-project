@@ -1,0 +1,84 @@
+﻿@model IEnumerable<TechEvent.Web.Areas.Admin.ViewModels.SponsorTypeViewModel>
+
+@{
+    ViewData["Title"] = "Sponsor Types";
+}
+
+<h1>Sponsor Types</h1>
+
+@if (ViewBag.AllowToEdit)
+{
+    <p>
+        <a asp-action="Create" asp-route-year=@ViewBag.Year>Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            @if (ViewBag.AllowToEdit)
+            {
+                <th>Arrange</th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var i = 1;
+            var n = Model.Count();
+        }
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            @if (ViewBag.AllowToEdit)
+            {
+                <td>
+                    @if (i > 1)
+                    {
+                        <form asp-action="MoveUp" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year method="post" class="inline">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-light arrowbutton" title="move up"><i class="fas fa-angle-double-up"></i></button>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="MoveUp" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year method="post" class="inline" style="visibility:hidden">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-light arrowbutton" title="move up"><i class="fas fa-angle-double-up"></i></button>
+                            </div>
+                        </form>
+                    }
+                    @if (i < n)
+                    {
+                        <form asp-action="MoveDown" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year method="post" class="inline">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-light arrowbutton" title="move down"> <i class="fas fa-angle-double-down"></i> </button>
+                            </div>
+                        </form>
+                    }
+                    @{ i++;}
+                </td>
+            }
+            @if (ViewBag.AllowToEdit)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Delete</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Details</a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,149 @@
+﻿@using TechEvent.Domain.UsefulClases;
+@model TechEvent.Domain.Entities.Paper
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Paper</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyWebsite)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyWebsite)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Facebook)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Facebook)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkedIn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LinkedIn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Skype)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Skype)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GitHub)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GitHub)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Twitter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Twitter)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Website)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Website)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PresentationTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PresentationTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PresentationDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PresentationDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tags)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OtherMentions)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OtherMentions)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Edition)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Edition.Tagline)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TalkType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TalkType.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PaperStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PaperStatus.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (Model.PaperStatus.Id <= (int)PaperStatusEnum.UnderReview)
+    {
+        <span><a asp-action="ChangeStatus" asp-route-id="@Model.Id">Change Status</a> |</span>
+        <span ><a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |</span>
+}
+    <a asp-action="Index">Back to List</a>
+</div>

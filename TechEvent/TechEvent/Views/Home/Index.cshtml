@@ -1,0 +1,130 @@
+﻿@using TechEvent.Domain.UsefulClases
+<p id="home"></p>
+
+<div class="image" style="background-image: url('https://dotnetdays.ro/wp-content/uploads/2018/12/bckg_full_width_1.jpg');
+     background-size: cover; height: 600px; background-position: center; background-attachment:fixed">
+    <div class="row">
+        <div class="col-md-6  offset-md-3 col-8 offset-2 hero text-center">
+            <div id="dateEvent">
+                <i class="fa fa-calendar"></i> 06.Aprilie
+                <i class="fa fa-map-marker-alt"></i>Iasi, Romania
+            </div>
+
+            <h6 class="craft">Meet. Learn. Craft!</h6>
+        </div>
+    </div>
+
+    @*<div id="wpfront-scroll-top-container" style="opacity: 0; right: 20px; bottom: 20px; display: none;">
+            <img src="https://dotnetdays.ro/wp-content/plugins/wpfront-scroll-top/images/icons/1.png" alt="" style="width: auto; height: auto;">
+        </div>*@
+
+    <div class="row">
+        <div class="col-md-4  offset-md-4 col-8 offset-2">
+            <form class="text-center" asp-action="Subscribe" asp-controller="Home" method="post">
+                <div class="input-group">
+                    <input type="email" id="emailAddress" name="emailAddress" class="form-control" size="20" style="background-position: center" placeholder="Email Address" required />
+                    <div class="input-group-btn">
+                        <input type="submit" class="btn btn-info" value="Subscribe" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="vc_col-sm-12 wpb_column_container">
+    <div class="row text-center">
+        <div class="col-sm-4 offset-4">
+            <i class="fas fa-microphone-alt"></i>
+        </div>
+    </div>
+    <h3 id="about" style="text-align: center" class="vc_custom_heading">About dotnet days</h3>
+
+    <p style="text-align:center">
+        <span style="color: #8d93a0; font-weight:500">From the developers to developers</span>
+    </p>
+</div>
+
+<div class="container text-center">
+
+    <br />
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#menu1"><i class="vc_tta-icon fa fa-eye"></i>Info</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu2"><i class="vc_tta-icon fa fa-lightbulb"></i>Topics</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu3"><i class="vc_tta-icon fa fa-heart"></i>For the love of .NET</a>
+        </li>
+    </ul>
+
+    <div class="tab-content container-fluid justify-content-center" style="max-width:1000px">
+        <div id="menu1" class="container tab-pane active">
+            <br />
+
+            <p>
+                About .NET Days conference
+                dotnetdays.ro is a .Net and Microsoft related conference in Iasi, Romania.
+                The goal is to provide a platform where developers can exchange knowledge and experiences about .Net and connected technologies.
+                This .Net conference is about meeting people, learning and growing a craftmanship culture.
+            </p>
+        </div>
+        <div id="menu2" class="container tab-pane fade">
+            <br />
+
+            <p>
+                About .NET Days conference
+                dotnetdays.ro is a .Net and Microsoft related conference in Iasi, Romania.
+                The goal is to provide a platform where developers can exchange knowledge and experiences about .Net and connected technologies.
+                This .Net conference is about meeting people, learning and growing a craftmanship culture
+                dotnetdays is a Non-profit Community Conference.
+                All the speakers and staff engage on a voluntary basis because they want to support and grow .NET Community.
+                dotnetdays.ro conference is organised  this year with the support of Fortech
+                We want dotnetdays.ro to deliver high quality tracks and workshop.
+            </p>
+        </div>
+        <div id="menu3" class="container tab-pane fade">
+            <br />
+
+
+            <p>
+                Dotnetdays is a Non-profit Community Conference.
+                All the speakers and staff engage on a voluntary basis because they want to support and grow .NET Community.
+                Dotnetdays.ro conference is organised  this year with the support of Fortech
+                We want dotnetdays.ro to deliver high quality tracks and workshop.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+<partial name="Speakers" />
+
+<div class="image centerclass" style="background-image: url('https://dotnetdays.ro/wp-content/uploads/2018/12/bckg_full_width_3crop.jpg');
+     background-size: cover; height: 400px; background-position: center; background-attachment:fixed; color:white;">
+
+    <div class="register text-center">
+        <header>
+            <h2 class="meet" style="color:#ffffff;">You want to Meet, Learn, Craft ?</h2>
+            <h4 style="color:#ffffff;">.NET and the world around it</h4>
+        </header>
+        <p>Seats are limited, so make sure you get one! It’s free!</p>
+        <div class="vc_cta3-actions">
+            <div class="class=" vc_btn3-container vc_btn3-inline"">
+                <a onmouseleave="this.style.borderColor='#ffffff'; this.style.backgroundColor='transparent'; this.style.color='#ffffff'"
+                   onmouseenter="this.style.borderColor='#ffffff'; this.style.backgroundColor='#ffffff'; this.style.color='#442359';"
+                   style="border-color: rgb(255, 255, 255); color: rgb(255, 255, 255); background-color: transparent;"
+                   class="btn btn-md btn-alt vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-outline-custom"
+                   href="http://dotnetdays.eventbrite.com" target="_blank">REGISTER</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<partial name="Sponsors" />
+
+@*<partial name="Venue" />*@

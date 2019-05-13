@@ -1,0 +1,49 @@
+﻿@model TechEvent.Domain.Entities.Speaker
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div>
+    <h4>You are about to remove the informations about @Model.FullName.</h4>
+    <hr />
+    <div class="col-md-10 offset-1 col-sm-12 text-center">
+        @if (Model.SpeakerPhoto != null)
+        {
+            <div class="container">
+                <a href="@Model.Website">
+                    <img class="img-fluid img-thumbnail" style="max-height:300px" src="@Url.Action("GetImage","Speakers",new { Id = Model.Id })" alt="No picture to show" />
+                </a>
+            </div>
+        }
+        <p>@Model.Position</p>
+        <div>
+            <a href="@Model.CompanyName">@Model.CompanyName</a>
+        </div>
+        <div>
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        @if(Model.Talks.Count > 0)
+        {
+            <div class="alert alert-warning">
+                <p>This speaker have the following @(Model.Talks.Count > 1?"conferences":"conference"):</p>
+                <ul style="list-style-type:none;">
+                    @foreach (var talk in ViewBag.Talks)
+                    {
+                        <li>@talk.Name</li>
+                    }
+                </ul>
+                <p>All these information will be lost.</p>
+            </div>
+        }
+        <br />
+        <p>Are you shoure that you want to remove this speaker?</p>
+
+    </div>
+
+    <form asp-action="Delete"  asp-route-year=@ViewBag.Year>
+        <input type="hidden" asp-for="Id"  asp-route-year=@ViewBag.Year />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-route-year=@ViewBag.Year>Back to List</a>
+    </form>
+</div>

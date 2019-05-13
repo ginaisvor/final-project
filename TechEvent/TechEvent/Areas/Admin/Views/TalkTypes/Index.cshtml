@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TechEvent.Domain.Entities.TalkType>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+@if (ViewBag.AllowToEdit)
+{
+    <p>
+        <a asp-action="Create" asp-route-year=@ViewBag.Year>Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+
+                @if (ViewBag.AllowToEdit)
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Details</a>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>

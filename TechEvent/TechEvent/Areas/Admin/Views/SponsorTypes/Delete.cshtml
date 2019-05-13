@@ -1,0 +1,41 @@
+﻿@model TechEvent.Domain.Entities.SponsorType
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<div class="col-md-8 offset-2">
+    <h4> You are about to delete the sponsorship @Model.Name</h4>
+    @{ var nrOfSponsors = Model.Sponsors.Count();}
+    @if (nrOfSponsors > 0)
+    {
+        <div class="alert alert-danger">
+            <p>There @(nrOfSponsors == 1 ? "is one sponsor" : $"are {nrOfSponsors} sponsors") in this category.</p>
+            <ul>
+                @foreach (var sponsor in Model.Sponsors)
+                {
+                    <li>@sponsor.Name</li>
+                }
+            </ul>
+            <h5>@(nrOfSponsors == 1 ? "It" : "They") will be deleted too!</h5>
+        </div>
+    }
+
+    <h4>Are you sure you want to delete this category?</h4>
+
+
+    <div>
+        <form asp-action="Delete" asp-route-year=@ViewBag.Year>
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index" asp-route-year=@ViewBag.Year>Back to List</a>
+        </form>
+    </div>
+</div>

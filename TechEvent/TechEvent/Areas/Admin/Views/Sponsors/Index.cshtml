@@ -1,0 +1,122 @@
+﻿@model IEnumerable<IGrouping<TechEvent.Domain.Entities.SponsorType, TechEvent.Domain.Entities.Sponsor>>
+
+@{
+    ViewData["Title"] = "Sponsors";
+}
+
+<h1>List of the Sponsors</h1>
+
+<p>
+    @if (ViewBag.AllowToEdit)
+    {
+        <span><a asp-action="Create" asp-route-year=@ViewBag.Year>Create New</a> |</span>
+    }
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#searchSponsors">Search</button>
+</p>
+
+<div id="searchSponsors" class="collapse">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <form asp-action="Index" asp-route-year="@ViewBag.Year" method="get">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" value="@ViewBag.Name" />
+                </div>
+                <div class="form-group">
+                    <label for="isActive">Activity</label><br />
+                    @if (ViewBag.IsActive == null)
+                    {
+                        <div>
+                            <input type="radio" name="isActive" value="true" />Only Active<br />
+                            <input type="radio" name="isActive" value="false" /> Only Inactive <br />
+                            <input type="radio" name="isActive" value="null" checked /> Both <br />
+                        </div>
+                    }
+                    else if (ViewBag.IsActive)
+                    {
+                        <div>
+                            <input type="radio" name="isActive" value="true" checked />Only Active<br />
+                            <input type="radio" name="isActive" value="false" /> Only Inactive <br />
+                            <input type="radio" name="isActive" value="null" /> Both <br />
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <input type="radio" name="isActive" value="true" />Only Active<br />
+                            <input type="radio" name="isActive" value="false" checked /> Only Inactive <br />
+                            <input type="radio" name="isActive" value="null" /> Both <br />
+                        </div>
+                    }
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (TempData["MessageEdit"] != null)
+{
+    <div class="alert alert-warning"><p>@TempData["MessageEdit"]</p></div>
+}
+
+<div>
+    @foreach (var sponsorListByGroup in Model)
+    {
+        <div class="alert alert-info">Category: @sponsorListByGroup.Key.Name</div>
+
+        <div class="row">
+
+            @foreach (var item in sponsorListByGroup)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    @{string clasa;
+                        if (item.Active)
+                        {
+                            clasa = "card";
+                        }
+                        else
+                        {
+                            clasa = "card bg-light";
+                        }
+                    }
+                    <div class="@clasa" style="height:320px">
+
+                        <div class="card-header">
+                            <h4>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="container">
+                                <a href="@item.Website">
+                                    <img class="img-fluid" style="max-height:168px" src="@Url.Action("GetImage", "Sponsors", new { Id = item.Id })" alt="No picture to show" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            @if (ViewBag.AllowToEdit)
+                            {
+                                <span>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Delete</a>
+                                </span>
+                            }
+                            else
+                            {
+                                <span><a asp-action="Details" asp-route-id="@item.Id" asp-route-year=@ViewBag.Year>Details</a></span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <br />
+    }
+</div>
+
+

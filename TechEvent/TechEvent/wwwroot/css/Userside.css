@@ -1,0 +1,228 @@
+﻿#Home Page{
+    background-image: url('../images/conferinta-de-presa.jpg');
+}
+.container {
+    min-width: 100%;
+    min-height:100%;
+    padding: 0;
+}
+
+.codeOfConduct {
+    max-width: 100%;
+    padding: 0 50px;
+}
+
+
+.image {
+    margin: 0;
+    padding: -20px;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    width: inherit;
+    position: relative;
+}
+
+.vc_custom_heading {
+    margin: 30px 0 50px;
+    font-family: Roboto;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0em;
+    color: #6ec2e9;
+    word-wrap: break-word;
+    font-size: 2rem;
+}
+
+.conductTitle h3 {
+    margin: 50px 0 50px;
+    font-family: Roboto;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 0em;
+    color: #6ec2e9;
+    word-wrap: break-word;
+    font-size: 50px;
+}
+
+#dateEvent {
+    padding: 70px 0px 100px;
+}
+
+.hero {
+    padding: 0px 0px 100px;
+    font-family: Roboto;
+    font-size: 1.6vw;
+    font-weight: 900;
+    line-height: 1.4;
+    letter-spacing: 0.5em;
+    color: white;
+}
+.fa {
+    color: #6ec2e9;
+}
+
+
+.input-group{
+    background-position: center;
+}
+
+.craft {
+    font-family: Roboto;
+    font-size: 5.5vw;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: white;
+}
+
+.fas {
+    margin: 50px 0 0px;
+    color: #6ec2e9;
+    font-size: 50px;
+}
+
+.wpb_wrappers {
+    margin: 0px 0px 0px;
+}
+
+.vc_tta-title-text {
+    margin: 0px 0px 0px;
+}
+l
+.img-thumbnai {
+   height: 150px;
+}
+
+.register {
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.meet {
+    /* padding: 0px 350px 0px;*/
+    font-family: Roboto;
+    font-size: 4vw;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: white;
+}
+
+.speakerArea {
+    padding: 10px 50px;
+}
+
+.header {
+    margin: 50px 0px 25px;
+    font-family: Roboto;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0em;
+    color: #6ec2e9;
+    word-wrap: break-word;
+    font-size: 35px;
+}
+
+
+.centerclass {
+    display: flex;
+    justify-content: center;
+}
+
+.verticalclass {
+    height: 100%;
+    align-items: center;
+}
+
+.row {
+    margin-left : 0;
+    margin-right : 0;
+}
+
+.end {
+    color: #ffffff;
+    background-color: #442359;
+    vertical-align: baseline;
+    /* padding: 5px 35px 0px;*/
+}
+
+.container-fluid {
+    position: relative;
+    width: inherit;
+    zoom: 1;
+    margin: 30px;
+    padding:0;
+    border: 0px;
+    font-size: 100%;
+    vertical-align: baseline;
+    letter-spacing: 0px;
+    line-height: 1.93333;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.footer .fab {
+    color: white;
+}
+
+.footer  a {
+    color : white;
+}
+
+
+
+
+
+
+.techEventContainer {
+
+}
+
+.callForPapers {
+    margin: 0;
+    padding: 0;
+    background: url("https://dotnetdays.ro/wp-content/uploads/2018/12/bckg_full_width_3crop.jpg") no-repeat;
+    background-size: cover;
+    background-position: center right;
+    background-attachment: fixed;
+    color: white;
+}
+
+.callForPapers h1 {
+    float: left;
+    font-size:  40px;
+    border-bottom: 6px solid #00ff21;
+    margin-bottom : 50px;
+    padding: 13px 0;
+}
+
+    .callForPapers h3 {
+        display:inline-block;
+        font-size: 20px;
+        border-bottom: 3px solid #00ff21;
+        margin-bottom: 25px;
+        padding: 7px 0;
+    }
+
+.speakerInformations {
+
+}
+
+.centerclassfooter {
+    display: flex;
+    justify-content: space-around;
+}
+
+.verticalcenter {
+    height: 100%;
+    align-items: center;
+}
+
+
+
+
+
+

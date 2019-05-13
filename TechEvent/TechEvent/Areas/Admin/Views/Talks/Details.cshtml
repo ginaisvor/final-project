@@ -1,0 +1,55 @@
+﻿@model TechEvent.Domain.Entities.Talk
+
+<div>
+    <h4>Talk</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayName("Speaker")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Speaker.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Position")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Speaker.Position)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Company")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Speaker.CompanyName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Talk type")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TalkType.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Name")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Description")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+@if (ViewBag.AllowToEdit)
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" asp-route-year=@ViewBag.Year>Edit</a> |
+        <a asp-action="Index" asp-route-year=@ViewBag.Year>Back to List</a>
+    </div>
+}
+else
+{
+    <a asp-action="Index" asp-route-year=@ViewBag.Year>Back to List</a>
+}

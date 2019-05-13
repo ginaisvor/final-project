@@ -1,0 +1,200 @@
+﻿@using TechEvent.Domain.UsefulClases
+
+<div class="image" style="background-image: url('https://dotnetdays.ro/wp-content/uploads/2018/12/bckg_full_width_1.jpg');
+     background-size: cover; height: 600px; background-position: center; background-attachment:fixed">
+    <div class="hero text-center">
+        <div id="dateEvent">
+            <i class="fa fa-calendar"></i> 06.Aprilie
+            <i class="fa fa-map-marker-alt"></i>Iasi, Romania
+        </div>
+
+        <h6 class="craft">Meet. Learn. Craft!</h6>
+    </div>
+
+    @*<div id="wpfront-scroll-top-container" style="opacity: 0; right: 20px; bottom: 20px; display: none;">
+        <img src="https://dotnetdays.ro/wp-content/plugins/wpfront-scroll-top/images/icons/1.png" alt="" style="width: auto; height: auto;">
+    </div>*@
+
+    <div class="row">
+        <div class="col-sm-4 offset-4">
+            <form class="text-center" asp-action="Subscribe" asp-controller="Home" method="post">
+                <div class="input-group">
+                    <input type="email" id="emailAddress" name="emailAddress" class="form-control" size="20" style="background-position: center" placeholder="Email Address" required />
+                    <div class="input-group-btn">
+                        <input type="submit" class="btn btn-info" value="Subscribe" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="vc_col-sm-12 wpb_column_container">
+    <div class="row text-center">
+        <div class="col-sm-4 offset-4">
+            <i class="fas fa-microphone-alt"></i>
+        </div>
+    </div>
+    <h3 style="text-align: center" class="vc_custom_heading">About dotnet days</h3>
+
+    <p style="text-align:center">
+        <span style="color: #8d93a0; font-weight:500">From the developers to developers</span>
+    </p>
+</div>
+
+<div class="container text-center">
+
+    <br />
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#menu1"><i class="vc_tta-icon fa fa-eye"></i>Info</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu2"><i class="vc_tta-icon fa fa-lightbulb"></i>Topics</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu3"><i class="vc_tta-icon fa fa-heart"></i>For the love of .NET</a>
+        </li>
+    </ul>
+
+    <div class="tab-content container-fluid" style="max-width:1000px">
+        <div id="menu1" class="container tab-pane active">
+            <br />
+
+            <p>
+                About .NET Days conference
+                dotnetdays.ro is a .Net and Microsoft related conference in Iasi, Romania.
+                The goal is to provide a platform where developers can exchange knowledge and experiences about .Net and connected technologies.
+                This .Net conference is about meeting people, learning and growing a craftmanship culture.
+            </p>
+        </div>
+        <div id="menu2" class="container tab-pane fade">
+            <br />
+
+            <p>
+                About .NET Days conference
+                dotnetdays.ro is a .Net and Microsoft related conference in Iasi, Romania.
+                The goal is to provide a platform where developers can exchange knowledge and experiences about .Net and connected technologies.
+                This .Net conference is about meeting people, learning and growing a craftmanship culture
+                dotnetdays is a Non-profit Community Conference.
+                All the speakers and staff engage on a voluntary basis because they want to support and grow .NET Community.
+                dotnetdays.ro conference is organised  this year with the support of Fortech
+                We want dotnetdays.ro to deliver high quality tracks and workshop.
+            </p>
+        </div>
+        <div id="menu3" class="container tab-pane fade">
+            <br />
+
+
+            <p>
+                Dotnetdays is a Non-profit Community Conference.
+                All the speakers and staff engage on a voluntary basis because they want to support and grow .NET Community.
+                Dotnetdays.ro conference is organised  this year with the support of Fortech
+                We want dotnetdays.ro to deliver high quality tracks and workshop.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="vc_col-sm-12 wpb_column column_container">
+    <div class="wpb_wrapper">
+        <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center text-center">
+            <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey">
+                <i class="fas fa-users "></i>
+            </div>
+        </div>
+        <h3 style="text-align: center" class="vc_custom_heading">Keynote speakers</h3>
+        <p style="text-align: center;">
+            <span style="color: #8d93a0;">
+                Meet our most valued speakers
+            </span>
+        </p>
+    </div>
+</div>
+<div class="vc_empty_space" style="height: 32px">
+    <span class="vc_empty_space_inner"></span>
+</div>
+<div class="centerclass row text-center">
+    @foreach (Speaker speaker in ViewBag.Speakers)
+    {
+        <div class="speakerArea col-lg-3 col-md-6 col-12">
+            <img src="@Url.Action("GetImage","Speakers",new { Id = speaker.Id })" class="img-fluid rounded-circle" width="200" style="max-height:200px;" />
+            <h6 class="name">
+                <a asp-controller="Speakers" asp-action="Details2" asp-route-pageslug="@speaker.PageSlug">@speaker.FullName</a>
+            </h6>
+            <p>@speaker.Description.MaxChars(150)</p>
+        </div>
+    }
+</div>
+
+<div class="image" style="background-image: url('https://dotnetdays.ro/wp-content/uploads/2018/12/bckg_full_width_3crop.jpg');
+     background-size: cover; height: 400px; background-position: center; background-attachment:fixed; color:white;">
+    <div class="register text-center">
+        <header>
+            <h2 class="meet" style="color:#ffffff;">You want to Meet, Learn, Craft ?</h2>
+            <h4 style="color:#ffffff;">.NET and the world around it</h4>
+        </header>
+        <p>Seats are limited, so make sure you get one! It’s free!</p>
+        <div class="vc_cta3-actions">
+            <div class="class=" vc_btn3-container vc_btn3-inline"">
+                <a onmouseleave="this.style.borderColor='#ffffff'; this.style.backgroundColor='transparent'; this.style.color='#ffffff'"
+                   onmouseenter="this.style.borderColor='#ffffff'; this.style.backgroundColor='#ffffff'; this.style.color='#442359';"
+                   style="border-color: rgb(255, 255, 255); color: rgb(255, 255, 255); background-color: transparent;"
+                   class="btn btn-md btn-alt vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-outline-custom"
+                   href="http://dotnetdays.eventbrite.com" target="_blank">REGISTER</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="star text-center">
+    <i class="fas fa-handshake"></i>
+</div>
+
+<div class="sponsor text-center">
+    @foreach (var sponsorGroup in ViewBag.Sponsors)
+    {
+        <div class="col-12"><h6 class="header">@sponsorGroup.Key.Name</h6></div>
+        <div class="row centerclass verticalclass">
+            @foreach (var sponsor in sponsorGroup)
+            {
+                <div class="col-lg-2 col-md-3">
+                    <a href="@sponsor.Website" target="_blank">
+                        <img src="@Url.Action("GetImage","Sponsors",new { Id = sponsor.Id })" class="img-fluid" style="max-height:200px; max-width:200px;" />
+                    </a>
+                </div>
+            }
+        </div>
+    }
+</div>
+<br />
+<section class="end">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <a href="mailto:info@dotnetdays.ro" style="color: white">Contact us</a>
+            </div>
+            <div class="col-sm-2">
+                <a href="http://#" style="color: white">Terms & Conditions</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="http://facebook.com/dotnetdays.ro" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/dotnetdaysro" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://meetup.com/NET-User-Group-Iasi/" target="_blank">
+                    <i class="fab fa-slack"></i>
+                </a>
+            </div>
+            <div class="col-sm-4 text-lg-right">
+                <p class="text-alt">
+                    All Rights Reserved 2019
+                </p>
+            </div>
+            
+        </div>
+    </div>
+</section>

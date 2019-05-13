@@ -1,0 +1,146 @@
+﻿@model TechEvent.Web.ViewModels.PaperViewModel
+
+@{
+    ViewData["Title"] = "CallForPapers";
+}
+
+<div class="callForPapers">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1>Call for papers</h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3 col-10 offset-1">
+
+
+            <form asp-action="CallForPapers">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="speakerInformations">
+                    <div class="row justify-content-xl-center"><h3>Informations about you</h3></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyName" class="control-label"></label>
+                        <input asp-for="CompanyName" class="form-control" />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyWebsite" class="control-label"></label>
+                        <input asp-for="CompanyWebsite" class="form-control" />
+                        <span asp-validation-for="CompanyWebsite" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea rows="5" asp-for="Description" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Position" class="control-label"></label>
+                        <input asp-for="Position" class="form-control" />
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Country" class="control-label"></label>
+                        <input asp-for="Country" class="form-control" />
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Facebook" class="control-label"></label>
+                        <input asp-for="Facebook" class="form-control" />
+                        <span asp-validation-for="Facebook" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LinkedIn" class="control-label"></label>
+                        <input asp-for="LinkedIn" class="form-control" />
+                        <span asp-validation-for="LinkedIn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Skype" class="control-label"></label>
+                        <input asp-for="Skype" class="form-control" />
+                        <span asp-validation-for="Skype" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GitHub" class="control-label"></label>
+                        <input asp-for="GitHub" class="form-control" />
+                        <span asp-validation-for="GitHub" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Twitter" class="control-label"></label>
+                        <input asp-for="Twitter" class="form-control" />
+                        <span asp-validation-for="Twitter" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Website" class="control-label"></label>
+                        <input asp-for="Website" class="form-control" />
+                        <span asp-validation-for="Website" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="talkInformations">
+                    <div class="row justify-content-xl-center">
+                        <h3>Informations about your presentation</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="EditionId" class="control-label"></label>
+                        <future-edition asp-for="EditionId" class="form-control"></future-edition>
+                        <span asp-validation-for="EditionId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="TalkTypeId" class="control-label"></label>
+                        <select asp-for="TalkTypeId" class="form-control"></select>
+                        <span asp-validation-for="TalkTypeId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PresentationTitle" class="control-label"></label>
+                        <input asp-for="PresentationTitle" class="form-control" />
+                        <span asp-validation-for="PresentationTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PresentationDescription" class="control-label"></label>
+                        <textarea rows="5" asp-for="PresentationDescription" class="form-control"></textarea>
+                        <span asp-validation-for="PresentationDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tags" class="control-label"></label>
+                        <input asp-for="Tags" class="form-control" />
+                        <span asp-validation-for="Tags" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OtherMentions" class="control-label"></label>
+                        <textarea rows="5" asp-for="OtherMentions" class="form-control"></textarea>
+                        <span asp-validation-for="OtherMentions" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-action="Index" class="float-right">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/CreateEditPapers.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
